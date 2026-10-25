@@ -1,0 +1,30 @@
+{
+  "temperature": 2.5,
+  "l1_mix": 0.15,
+  "rerank": {
+    "k": 8,
+    "tau": 0.05,
+    "iters": 3,
+    "dup": {
+      "theta": 0.9,
+      "kmax": 64
+    }
+  },
+  "sinkhorn": {
+    "beta": 0.4,
+    "iters": 3
+  },
+  "label_transition": {
+    "file": "label_transition.json",
+    "lam": 0.15
+  },
+  "ensemble": {
+    "weights": [
+      0.51,
+      0.34,
+      0.15
+    ],
+    "budget_s": 240
+  },
+  "half": true
+}

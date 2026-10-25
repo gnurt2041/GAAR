@@ -1,0 +1,38 @@
+# M2: EVA02-L CLIP, region head.
+# Released weights: --fold loo_Market1501 (PA100k + PETA), best epoch on Market1501 (loo_Market1501_best.pt).
+data:
+  root: ./data                      # UPAR challenge data (annotations/ + Market1501/, PA100k/, PETA/)
+  gt_csvs: [annotations/task2/train/gt.csv, annotations/task2/val/gt.csv]
+  image_size: [224, 112]            # (H, W)
+  num_workers: 8
+model:
+  backbone: eva02_large_patch14_clip_224.merged2b
+  pretrained: true                  # downloads the timm weights; offline: pretrained: false + pretrained_path
+  img_size: [224, 112]
+  drop_rate: 0.2
+  region_head: true
+  grad_checkpointing: false
+loss:
+  pos_weight_clamp: 50.0            # weighted BCE, positives weighted by #neg / #pos
+train:
+  epochs: 18
+  early_stop_patience: 3
+  batch_size: 32
+  lr_head: 1.0e-4
+  lr_backbone: 1.0e-5
+  llrd_decay: 0.9
+  weight_decay: 5.0e-4
+  amp: true                         # bfloat16 autocast
+  ema: {enable: true, decay: 0.9998}
+  augment:
+    random_crop: true
+    rrc_scale_min: 0.8
+    rrc_ratio_jitter: 0.15
+    horizontal_flip: true
+    augmix: true
+    random_erasing: 0.25
+  balanced_dataset_sampling: true
+  regionmix: {prob: 0.5}         # swap lower body between images
+  save_all_epochs: false
+output_dir: ./runs/m2_eva02l_clip_region
+seed: 42

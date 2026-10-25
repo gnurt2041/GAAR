@@ -1,0 +1,3 @@
+# Code submission: the ingestion program imports run.py and calls load_model() / rank_gallery().
+# This command is not used for inference.
+command: python3 -c "print('Code submission. The ingestion program imports run.py')"

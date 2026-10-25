@@ -1,0 +1,6 @@
+# torch 2.4.1 and torchvision 0.19.1 come with the Docker base image
+timm==1.0.9
+numpy<2
+pillow
+pyyaml
+tqdm

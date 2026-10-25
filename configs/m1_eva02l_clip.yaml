@@ -1,0 +1,37 @@
+# M1: EVA02-L CLIP, linear head. Also provides the features for the gallery graph.
+# Released weights: --fold final, epoch 0 (final_epoch0.pt); epoch chosen on --fold loo_Market1501.
+data:
+  root: ./data                      # UPAR challenge data (annotations/ + Market1501/, PA100k/, PETA/)
+  gt_csvs: [annotations/task2/train/gt.csv, annotations/task2/val/gt.csv]
+  image_size: [224, 112]            # (H, W)
+  num_workers: 8
+model:
+  backbone: eva02_large_patch14_clip_224.merged2b
+  pretrained: true                  # downloads the timm weights; offline: pretrained: false + pretrained_path
+  img_size: [224, 112]
+  drop_rate: 0.2
+  region_head: false
+  grad_checkpointing: false
+loss:
+  pos_weight_clamp: 50.0            # weighted BCE, positives weighted by #neg / #pos
+train:
+  epochs: 18
+  early_stop_patience: 3
+  batch_size: 6
+  lr_head: 1.0e-4
+  lr_backbone: 1.0e-5
+  llrd_decay: 0.9
+  weight_decay: 5.0e-4
+  amp: true                         # bfloat16 autocast
+  ema: {enable: true, decay: 0.9998}
+  augment:
+    random_crop: true
+    rrc_scale_min: 0.8
+    rrc_ratio_jitter: 0.15
+    horizontal_flip: true
+    augmix: true
+    random_erasing: 0.25
+  balanced_dataset_sampling: true
+  save_all_epochs: true
+output_dir: ./runs/m1_eva02l_clip
+seed: 42

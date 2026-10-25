@@ -1,0 +1,6 @@
+.git
+data
+runs
+out
+*.zip
+**/__pycache__
