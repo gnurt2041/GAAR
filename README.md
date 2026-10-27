@@ -71,7 +71,9 @@ Dockerfile
 data/annotations/task2/{train,val}/...   data/Market1501/...   data/PA100k/...   data/PETA/...
 ```
 
-**Weights** (1.38 GB, fp16 state dicts):
+**Weights** (1.38 GB, fp16 state dicts), hosted on
+[Google Drive](https://drive.google.com/drive/folders/1o79leV1XSql5tzFneLeAjuR6HP-0Ev3T?usp=sharing).
+The script downloads them into `submission/assets/` and verifies their SHA-256:
 
 ```bash
 bash scripts/download_weights.sh

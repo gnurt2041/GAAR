@@ -11,9 +11,9 @@ declare -A TARGET=(
   [m3_eva02b_mim.pt]=weights3.pt
 )
 declare -A URL=(
-  [m1_eva02l_clip.pt]="${M1_URL:-TODO_M1_URL}"
-  [m2_eva02l_clip_region.pt]="${M2_URL:-TODO_M2_URL}"
-  [m3_eva02b_mim.pt]="${M3_URL:-TODO_M3_URL}"
+  [m1_eva02l_clip.pt]="${M1_URL:-https://drive.google.com/file/d/15na51RE2WN0YjZi2QKE7Hl1d0G_LYplH/view}"
+  [m2_eva02l_clip_region.pt]="${M2_URL:-https://drive.google.com/file/d/1uy0fWWS29ToefpKIOZodlHzYgECVPoRx/view}"
+  [m3_eva02b_mim.pt]="${M3_URL:-https://drive.google.com/file/d/1mLSEt5CZpICEnkayC044JFfs02Rxrsi8/view}"
 )
 
 for f in "${!TARGET[@]}"; do
